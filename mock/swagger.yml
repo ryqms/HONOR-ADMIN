@@ -710,6 +710,60 @@ paths:
                         $ref: '#/components/schemas/User'
         401:
           $ref: '#/components/responses/Unauthorized'
+  /players: #
+    get:  
+      tags: 
+        - players
+      summary: 获取玩家信息列表 #概要
+      description: 返回玩家信息列表 #描述
+      operationId: getPlayers #操作ID，必要，映射到实现函数
+      parameters: # 参数
+        - name: acountname
+          in: query
+          description: 账号⽤于查询⽤户
+          schema:
+            type: string
+        - name: nickname
+          in: query
+          description: 昵称⽤于查询⽤户
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: ⻚码
+            schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - name: limit
+          in: query
+          description: 每⻚数量
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      format: int32
+                    data:
+                      type: object
+                      properties:
+                        total:
+                          type: integer
+                          format: int32
+                        items:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Player'
 components:
   securitySchemes:
     AccessTokenAuth:
