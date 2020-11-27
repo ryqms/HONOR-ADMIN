@@ -45,7 +45,7 @@ export interface IUserData {
 
 export interface Player{
   id: number,
-  acountname: string,
+  acoutname: string,
   nickname: string,
   avatar: string,
   level: number, //等级
